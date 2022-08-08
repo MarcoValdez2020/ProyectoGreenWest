@@ -53,8 +53,8 @@ public class Consultar {
             });
         });
         
-        Spark.get("/direccion/obtener/:id_usuario", (request, response) -> {
-            String user = request.params(":id_usuario");
+        Spark.get("/direccion/obtener/:id_direccion", (request, response) -> {
+            String user = request.params(":id_direccion");
             final String lQuery = new LSelect().from("dirección").value("*").getQuery();
             HIKARI_POOL.execute(connection -> {
                 final ResultSet resultSet = connection.prepareStatement(lQuery).executeQuery();
@@ -65,8 +65,6 @@ public class Consultar {
                     final String calle = resultSet.getString("calle");
                     final int numero_exterior = resultSet.getInt("numero_exterior");
                     final int numero_interno = resultSet.getInt("numero_interno");
-                    final String coor_lantitud = resultSet.getString("coor_lantitud");
-                    final String coor_longitud = resultSet.getString("coor_longitud");
                     final int id_usuario = resultSet.getInt("id_usuario");
                 }
                 LOGGER.info(String.format("(Select) lQuery executed! \n lQuery: %s", lQuery));

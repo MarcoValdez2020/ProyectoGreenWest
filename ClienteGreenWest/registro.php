@@ -27,47 +27,47 @@
     <div class= "user-details">
       <div class= "input-box">
         <span class= "details"> Usuario </span>
-        <input name="usuario" type="text" class="form-control" placeholder="Ingresa un usuario">
+        <input name="usuario" type="text" class="form-control" placeholder="Ingresa un usuario"  required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Contraseña </span>
-        <input name="password" type="password" placeholder="Ingresa una contraseña">
+        <input name="password" type="password" placeholder="Ingresa una contraseña" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Nombre </span>
-        <input name="nombre" type="text" placeholder="Ingresa tu nombre">
+        <input name="nombre" type="text" placeholder="Ingresa tu nombre" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Apellido paterno </span>
-        <input name="apellidoP" type="text" placeholder="Ingresa tu apellido paterno">
+        <input name="apellidoP" type="text" placeholder="Ingresa tu apellido paterno" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Apellido materno </span>
-        <input name="apellidoM" type="text" placeholder="Ingresa tu apellido materno">
+        <input name="apellidoM" type="text" placeholder="Ingresa tu apellido materno" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Correo </span>
-        <input name="correo" type="text" placeholder="Ingresa tu correo">
+        <input name="correo" type="text" placeholder="Ingresa tu correo" pattern=".+@globex\.com" size="30" required>
       </div>
       <div class= "input-box">
         <span class= "details"> Estado </span>
-        <input name="estado" type="text" placeholder="Ingresa tu estado de origen">
+        <input name="estado" type="text" placeholder="Ingresa tu estado de origen" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Municipio </span>
-        <<input name="municipio" type="text" placeholder="Ingresa tu municipio">
+        <<input name="municipio" type="text" placeholder="Ingresa tu municipio" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Calle </span>
-        <input name="calle" type="text" placeholder="Ingresa tu calle">
+        <input name="calle" type="text" placeholder="Ingresa tu calle" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Número exterior </span>
-        <input name="numero_exterior" type="int" placeholder="Ingresa tu num exterior">
+        <input name="numero_exterior" type="int" placeholder="Ingresa tu num exterior" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Numero interno </span>
-        <input name="numero_interno" type="int" placeholder="Ingresa tu num interno">
+        <input name="numero_interno" type="int" placeholder="Ingresa tu num interno" required="required">
       </div>       
       <input type="submit" value="Submit">
       </div>

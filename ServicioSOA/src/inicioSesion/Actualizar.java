@@ -22,7 +22,7 @@ public class Actualizar {
                     .table("cuenta")
                     .update("usuario", "Juanito")
                     .update("password", "12343df")
-                    .where("usuario", "=", "Jezer")
+                    .where("usuario", "=", "Elena")
                     .getQuery();
             HIKARI_POOL.execute(connection -> {
                 connection.prepareStatement(lQuery).execute();

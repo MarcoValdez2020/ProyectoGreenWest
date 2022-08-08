@@ -12,11 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Yobiz/Documents/SOA/SOA/ServicioSOA/src/inicioSesion/Actualizar.java</file>
-            <file>file:/C:/Users/Yobiz/Documents/SOA/SOA/ServicioSOA/src/serviciosoa/ServicioSOA.java</file>
-            <file>file:/C:/Users/Yobiz/Documents/SOA/SOA/ServicioSOA/src/inicioSesion/Consultar.java</file>
-            <file>file:/C:/Users/Yobiz/Documents/SOA/SOA/ServicioSOA/src/inicioSesion/Eliminar.java</file>
-            <file>file:/C:/Users/Yobiz/Documents/SOA/SOA/ServicioSOA/src/inicioSesion/Cuenta.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/serviciosoa/Usuario.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/inicioSesion/Cuenta.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/inicioSesion/Consultar.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/inicioSesion/Actualizar.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/inicioSesion/Eliminar.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/serviciosoa/ServicioSOA.java</file>
         </group>
     </open-files>
 </project-private>
