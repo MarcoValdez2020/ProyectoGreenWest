@@ -15,8 +15,8 @@
     <span>ó regresa a la<a href="index.php"> Pagina principal</a></span>
 
     <form action="login.php" method="POST">
-      <input name="usuario" type="text" placeholder="Ingresa tu usuario">
-      <input name="password" type="password" placeholder="Ingresa tu contraseña">
+      <input name="usuario" type="text" placeholder="Ingresa tu usuario" required="required">
+      <input name="password" type="password" placeholder="Ingresa tu contraseña" minlength="8" maxlength="8" required="required">
       <input type="submit" value="Submit">
     </form>
 
