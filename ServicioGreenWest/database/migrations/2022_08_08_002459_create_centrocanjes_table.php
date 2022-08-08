@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
-            $table->id('id_usuario');
-            $table->string('nombre');
-            $table->string('apellidoP');
-            $table->string('apellidoM');
-            $table->string('correo');
-            $table->foreignId('id_cuenta')->references('id_cuenta')->on('cuenta')
+        Schema::create('centrocanje', function (Blueprint $table) {
+            $table->id('id_canje');
+            $table->date('fechaCanje');
+            $table->foreignId('id_usuario')->references('id_usuario')->on('usuario')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+                $table->foreignId('id_regalo')->references('id_regalo')->on('regalo')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
         });
@@ -27,11 +27,11 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     * $table->timestamp('last_used_at')->nullable(); para fechas
+     *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('centrocanje');
     }
 };

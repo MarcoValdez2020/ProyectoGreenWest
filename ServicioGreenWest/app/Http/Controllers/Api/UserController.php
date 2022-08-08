@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    /** 
     public function register(Request $request){
         $request -> validate([
             'name'=> 'required',
@@ -113,4 +114,5 @@ class UserController extends Controller
             "msg"=>"Usuario eliminado correctamente!",
         ]);
     }
+     */
 }

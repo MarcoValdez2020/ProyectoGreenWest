@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
-            $table->id('id_usuario');
-            $table->string('nombre');
-            $table->string('apellidoP');
-            $table->string('apellidoM');
-            $table->string('correo');
-            $table->foreignId('id_cuenta')->references('id_cuenta')->on('cuenta')
+        Schema::create('direccion', function (Blueprint $table) {
+            $table->id('id_direccion');
+            $table->string('estado');
+            $table->string('municipio');
+            $table->string('calle');
+            $table->integer('numero_exterior');
+            $table->integer('numero_interno');
+            $table->foreignId('id_usuario')->references('id_usuario')->on('usuario')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
         });
@@ -27,11 +28,11 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     * $table->timestamp('last_used_at')->nullable(); para fechas
+     *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('direccion');
     }
 };

@@ -12,22 +12,31 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $tabla = "users";
+    protected $tabla = "usuario";
 
     protected $fillable = [
-        'name',
-        'apellidoPaterno',
-        'apellidoMaterno',
-        'telefono',
-        'email',
-        'password',
-        'id_rol'
+        'nombre',
+        'apellidoP',
+        'apellidoM',
+        'correo',
+        'id_cuenta'
     ];
 
     public $timestamps = false;
 
-    public function roles()
-    {
-        return $this->belongsTo(Role::class);
+    public function cuenta(){
+        return $this->belongsTo(Cuenta::class,'id_cuenta');
+    }
+
+    public function direccion(){
+        return $this->hasOne(Direccion::class,'id_usuario');
+    }
+
+    public function contenedores(){
+        return $this->hasMany(Contenedor::class,'id_usuario');
+    }
+
+    public function canje(){
+        return $this->hasMany(centrocanje::class,'id_usuario');
     }
 }
