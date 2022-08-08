@@ -15,8 +15,8 @@ public class Cuenta {
     public Cuenta(final HikariPool HIKARI_POOL) {
 
         Spark.get("/cuenta/agregar/:usuario/:password/:nombre/:apellidoP/:apellidoM/:"
-                + "correo/:nacimiento/:palabra_clave/:estado/:municipio/:calle/:numero_exterior/:"
-                + "numero_interno/:coor_lantitud/:coor_longitud", (request, response) -> {
+                + "correo/:estado/:municipio/:calle/:numero_exterior/:"
+                + "numero_interno", (request, response) -> {
                     System.out.println(response.toString());
                     System.out.println(response.toString());
                     try{
@@ -25,13 +25,15 @@ public class Cuenta {
             final String lQuery = new LInsert()
                     .table("cuenta")
                     .values(
-                            null, usuario, password, 1, 1
+                            null, usuario, password, 0, 0
+                            //Rol 1 para admin 0 para usuario
                     )
                     .getQuery();
             HIKARI_POOL.execute((cnctn) -> {
                 cnctn.prepareStatement(lQuery).execute();
                 return null; //To change body of generated lambdas, choose Tools | Templates.
             });
+            //Conección de una tabla con otra
             final String select = new LSelect().from("cuenta").value("*").getQuery();
             int id = HIKARI_POOL.execute(connection -> {
                 final ResultSet resultSet = connection.prepareStatement(select).executeQuery();
@@ -44,12 +46,10 @@ public class Cuenta {
             String apellidoP = request.params(":apellidoP");
             String apellidoM = request.params(":apellidoM");
             String correo = request.params(":correo");
-            String nacimiento = request.params(":nacimiento");
-            String palabra_clave = request.params(":palabra_clave");
             final String lQuery1 = new LInsert()
                     .table("usuario")
                     .values(
-                            null, nombre, apellidoP, apellidoM, correo, nacimiento, palabra_clave, id
+                            null, nombre, apellidoP, apellidoM, correo, id
                     )
                     .getQuery();
             HIKARI_POOL.execute((cnctn) -> {
@@ -69,13 +69,10 @@ public class Cuenta {
             String calle = request.params(":calle");
             int numero_exterior = Integer.parseInt(request.params(":numero_exterior"));
             int numero_interno = Integer.parseInt(request.params(":numero_interno"));
-            String coor_lantitud = request.params(":coor_lantitud");
-            String coor_longitud = request.params(":coor_longitud");
             final String lQuery2 = new LInsert()
                     .table("direccion")
                     .values(
-                            null, estado, municipio, calle, numero_exterior, numero_interno, 
-                            coor_lantitud, coor_longitud, id
+                            null, estado, municipio, calle, numero_exterior, numero_interno, id
                     )
                     .getQuery();
             HIKARI_POOL.execute((cnctn) -> {

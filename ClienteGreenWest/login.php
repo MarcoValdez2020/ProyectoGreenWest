@@ -26,11 +26,11 @@
         $usuario = rawurlencode($_POST['usuario']);
         $password = rawurlencode($_POST['password']);
         $json = file_get_contents("http://localhost:6969/cuenta/login/{$usuario}/{$password}");
+        
         if($json == "true"){ 
 
         echo "Iniciaste sesión";
-        
-
+         
         } else{
           echo "Usuario o contraseña incorrecto";
         }

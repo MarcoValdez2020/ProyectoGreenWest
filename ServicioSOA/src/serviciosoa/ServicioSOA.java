@@ -17,7 +17,7 @@ public class ServicioSOA {
 
     private static final HikariPool HIKARI_POOL = new HikariPool(
             new SimpleSourceBuilder()
-            .setUrl("jdbc:mysql://localhost:3306/basuraproyecto?useSSL=false")
+            .setUrl("jdbc:mysql://localhost:3306/bdgreenwest?useSSL=false")
             .setUser("root").setPassword("")
             .build()
     );

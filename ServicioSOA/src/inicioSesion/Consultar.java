@@ -1,10 +1,12 @@
 
 package inicioSesion;
 
+import com.google.gson.Gson;
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.sql.ResultSet;
 import net.royalmind.library.lightquery.HikariPool;
 import net.royalmind.library.lightquery.queries.LSelect;
+import serviciosoa.Usuario;
 import spark.Spark;
 
 /**
@@ -29,28 +31,26 @@ public class Consultar {
             });
         });
         
-        
-        
         Spark.get("/usuario/obtener/:nombre", (request, response) -> {
             String user = request.params(":nombre");
             final String lQuery = new LSelect().from("usuario").value("*").getQuery();
-            HIKARI_POOL.execute(connection -> {
+            return HIKARI_POOL.execute(connection -> {
                 final ResultSet resultSet = connection.prepareStatement(lQuery).executeQuery();
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     final int id_usuario = resultSet.getInt("id_usuario");
                     final String nombre = resultSet.getString("nombre");
                     final String apellidoP = resultSet.getString("apellidoP");
                     final String apellidoM = resultSet.getString("apellidoM");
-                    final String correo = resultSet.getString("correo");
-                    final String nacimiento = resultSet.getString("nacimiento");
-                    final String palabra_clave = resultSet.getString("palabra_clave");
                     final int id_cuenta = resultSet.getInt("id_cuenta");
                     //final int id_rol = resultSet.getInt("id_rol");
+                    return new Gson().toJson(
+                            new Usuario(id_usuario, nombre, apellidoP, apellidoM),
+                            Usuario.class
+                    );
                 }
                 LOGGER.info(String.format("(Select) lQuery executed! \n lQuery: %s", lQuery));
                 return null;
             });
-            return "Obteniendo";
         });
         
         Spark.get("/direccion/obtener/:id_usuario", (request, response) -> {
