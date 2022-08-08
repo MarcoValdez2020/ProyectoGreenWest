@@ -31,7 +31,7 @@
       </div>
       <div class= "input-box">
         <span class= "details"> Contraseña </span>
-        <input name="password" type="password" placeholder="Ingresa una contraseña" required="required">
+        <input name="password" type="password" placeholder="Ingresa una contraseña" minlength="8" maxlength="8" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Nombre </span>
