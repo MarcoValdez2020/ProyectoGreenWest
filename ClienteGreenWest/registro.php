@@ -55,7 +55,7 @@
       </div>
       <div class= "input-box">
         <span class= "details"> Municipio </span>
-        <<input name="municipio" type="text" placeholder="Ingresa tu municipio" required="required">
+        <input name="municipio" type="text" placeholder="Ingresa tu municipio" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Calle </span>
