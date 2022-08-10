@@ -4,6 +4,7 @@ import Contenedores.ActualizarC;
 import Contenedores.ConsultaC;
 import Contenedores.EliminarC;
 import contenedores.AgregarC;
+import datosPersonales.*;
 import inicioSesion.Actualizar;
 import inicioSesion.Consultar;
 import inicioSesion.Cuenta;
@@ -31,6 +32,12 @@ public class ServicioSOA {
         Consultar consultar = new Consultar(HIKARI_POOL);
         Eliminar eliminar = new Eliminar(HIKARI_POOL);
         Actualizar actualizar = new Actualizar(HIKARI_POOL);
+        
+        /* Datos Personales*/
+        ActualizarUsuario actusuario= new ActualizarUsuario(HIKARI_POOL);
+        ConsultarUsuario conusuario= new ConsultarUsuario(HIKARI_POOL);
+        EliminarUsuario elimusuario= new EliminarUsuario(HIKARI_POOL);
+        
         /* Contenedores */
         AgregarC agregarc = new AgregarC(HIKARI_POOL);
         EliminarC eliminarc = new EliminarC(HIKARI_POOL);
