@@ -47,7 +47,7 @@
       </div>
       <div class= "input-box">
         <span class= "details"> Correo </span>
-        <input name="correo" type="text" placeholder="Ingresa tu correo" pattern=".+@globex\.com" size="30" required>
+        <input name="correo" type="text" placeholder="Ingresa tu correo" required="required">
       </div>
       <div class= "input-box">
         <span class= "details"> Estado </span>

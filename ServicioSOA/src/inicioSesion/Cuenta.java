@@ -33,8 +33,12 @@ public class Cuenta {
                 cnctn.prepareStatement(lQuery).execute();
                 return null; //To change body of generated lambdas, choose Tools | Templates.
             });
-            //Conección de una tabla con otra
-            final String select = new LSelect().from("cuenta").value("*").getQuery();
+            // una tabla con otra
+            final String select = new LSelect()
+                    .from("cuenta")
+                    .value("*")
+                    .where("usuario", "=", usuario)
+                    .getQuery();
             int id = HIKARI_POOL.execute(connection -> {
                 final ResultSet resultSet = connection.prepareStatement(select).executeQuery();
                 if (resultSet.next()) {
@@ -56,7 +60,11 @@ public class Cuenta {
                 cnctn.prepareStatement(lQuery1).execute();
                 return null; //To change body of generated lambdas, choose Tools | Templates.
             });
-            final String select1 = new LSelect().from("usuario").value("*").getQuery();
+            final String select1 = new LSelect()
+                    .from("usuario")
+                    .value("*")
+                    .where("nombre", "=", nombre)
+                    .getQuery();
             int id1 = HIKARI_POOL.execute(connection -> {
                 final ResultSet resultSet = connection.prepareStatement(select1).executeQuery();
                 if (resultSet.next()) {
