@@ -9,8 +9,8 @@ class Cuenta extends Model
 {
     use HasFactory;
 
-    protected $tabla = "cuenta";
-
+    protected $table = "cuenta";
+    protected $primaryKey = "id_cuenta";
     protected $fillable = [
         'usuario',
         'password',

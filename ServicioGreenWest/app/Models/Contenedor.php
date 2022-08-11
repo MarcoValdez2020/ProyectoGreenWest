@@ -9,8 +9,8 @@ class Contenedor extends Model
 {
     use HasFactory;
 
-    protected $tabla = "contenedor";
-
+    protected $table = "contenedor";
+    protected $primaryKey = "id_contenedor";
     protected $fillable = [
         'capacidad',
         'estadoContenedor',
