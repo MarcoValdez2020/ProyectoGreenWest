@@ -16,56 +16,30 @@ import spark.Spark;
 public class EliminarC {
     public EliminarC(final HikariPool HIKARI_POOL){
         
-        Spark.get("/contenedores/eliminar/:id_contenedor", (request, response) -> {
+        Spark.get("/contenedor/eliminar/:id_contenedor", (request, response) -> {
             int id_contenedor = Integer.parseInt(request.params(":id_contenedor"));
             final String lQuery = new LDelete()
-                    .from("contenedores")
+                    .from("contenedor")
                     .where("id_contenedor", "=", id_contenedor)
                     .getQuery();
             HIKARI_POOL.execute((cnctn) -> {
                 cnctn.prepareStatement(lQuery).execute();
                 return null; //To change body of generated lambdas, choose Tools | Templates.
             });
-            return null;
+            return "Eliminado Contenedor";
         });
         
-        Spark.get("/usuario/eliminar/:id_catalogo", (request, response) -> {
-            int id_catalogo = Integer.parseInt(request.params(":id_catalogo"));
+        Spark.get("/tipoContenedor/eliminar/:id_tipoConte", (request, response) -> {
+            int id_tipoConte = Integer.parseInt(request.params(":id_tipoConte"));
             final String lQuery = new LDelete()
-                    .from("catalogo")
-                    .where("id_catalogo", "=", id_catalogo)
+                    .from("tipocontenedor")
+                    .where("id_tipoConte", "=", id_tipoConte)
                     .getQuery();
             HIKARI_POOL.execute((cnctn) -> {
                 cnctn.prepareStatement(lQuery).execute();
                 return null; //To change body of generated lambdas, choose Tools | Templates.
             });
-            return null;
-        });
-        
-        Spark.get("/historial/eliminar/:id_historial", (request, response) -> {
-            int id_historial = Integer.parseInt(request.params(":id_historial"));
-            final String lQuery = new LDelete()
-                    .from("historial")
-                    .where("id_historial", "=", id_historial)
-                    .getQuery();
-            HIKARI_POOL.execute((cnctn) -> {
-                cnctn.prepareStatement(lQuery).execute();
-                return null; //To change body of generated lambdas, choose Tools | Templates.
-            });
-            return null;
-        });
-        
-        Spark.get("/asignacion/eliminar/:id_asignacion", (request, response) -> {
-            int id_asignacion = Integer.parseInt(request.params(":id_asignacion"));
-            final String lQuery = new LDelete()
-                    .from("asignacion")
-                    .where("id_asignacion", "=", id_asignacion)
-                    .getQuery();
-            HIKARI_POOL.execute((cnctn) -> {
-                cnctn.prepareStatement(lQuery).execute();
-                return null; //To change body of generated lambdas, choose Tools | Templates.
-            });
-            return "Se eliminaron todos los datos referente a los contenedores";
+            return "Eliminado el tipo de contenedor";
         });
     }
 }
