@@ -28,8 +28,8 @@
         $json = file_get_contents("http://localhost:6969/cuenta/login/{$usuario}/{$password}");
         
         if($json == "true"){ 
-
-        echo "Iniciaste sesión";
+        $menuUsuario='menuUsuario.php';
+        header('Location: '.$menuUsuario);
          
         } else{
           echo "Usuario o contraseña incorrecto";
