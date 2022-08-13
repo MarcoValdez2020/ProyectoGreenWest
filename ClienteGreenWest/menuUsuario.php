@@ -31,7 +31,7 @@
                                 <i class="uil uil-user-square"></i>
                                 <span class="link-name"><b>Datos Personales</b></span>
                             </a></li>
-                        <li><a href="Panel_Canjees.html">
+                        <li><a href="contenedores.php">
                                 <i class="uil uil-trash-alt"></i>
                                 <span class="link-name"><b>Contenedores </b></span>
                             </a></li>
