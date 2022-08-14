@@ -267,16 +267,17 @@
                 <div class="content-box hide-on-modal">
                   <div class="row row-30 justify-content-center align-items-center">
                     <div class="col-12 col-md-7">
-                      <form class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="contenedores" method="post" action="#">
+                      <form method="POST">
                         <div class="row row-14 gutters-14">
                           <div class="col-sm-6">
                             <div class="form-wrap">
-                              <label for="tipoBasura">Tipo de Basura</label>
-                              <select class="form-input" id="tipoBasura" type="text" name="name" data-constraints="@Required">
-                                <option value="pc" id="papelcarton">Papel o Carton</option>
-                                <option value="vi" id="vidrio">Vidrio</option>
-                                <option value="pe" id="pet">Pet</option>
-                                <option value="am" id="metal">Aluminio o metal</option>
+                              <label for="tipoContenedor">Tipo de Basura</label>
+                              <select class="form-input" id="tipoContenedor" type="text" name="text" data-constraints="@Required">
+                                <option> Seleccione el tipo de Basura </option>
+                                <option value="papel/carton" id="papelcarton">Papel o Carton</option>
+                                <option value="vidrio" id="vidrio">Vidrio</option>
+                                <option value="pet" id="pet">Pet</option>
+                                <option value="metal" id="metal">Aluminio o metal</option>
                               </select>
                             </div>
                           </div>
@@ -288,16 +289,29 @@
                           </div>
                           <div class="col-sm-6">
                             <div class="form-wrap">
-                              <label for="estado">Estado</label>
-                              <select class="form-input" id="estado" type="text" name="state" data-constraints="@Required">
-                                <option value="off" id="papelcarton">Contendor Nuevo (Vacio)</option>
-                                <option value="on" id="vidrio">Contenedor Lleno</option>
+                              <label for="puntos">Puntos</label>
+                              <input class="form-input" id="puntos" type="number" min="10" step="10" max="40" name="numbre" data-constraints="@Required">
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-wrap">
+                              <label for="estadoContenedor">Estado</label>
+                              <select class="form-input" id="estadoContenedor" type="text" name="text" data-constraints="@Required">
+                                <option> Eliga como se encuentra su contenedor </option>
+                                <option value="0" id="off">Contendor Nuevo (Vacio)</option>
+                                <option value="1" id="on">Contenedor Lleno</option>
                               </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-wrap">
+                              <label for="id_usuario">identificador de usuario</label>
+                              <input class="form-input" id="id_usuario" type="number" step="1" name="number" data-constraints="@Required">
                             </div>
                           </div>
                           <div class="col-sm-12">
                             <div class="form-button">
-                              <button class="button button-lg button-block button-primary" type="submit">Solicitar</button>
+                              <button class="button button-lg button-block button-primary" id="contenedor" type="submit">Solicitar</button>
                             </div>
                           </div>
                         </div>
@@ -400,5 +414,19 @@
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
     <!-- coded by ragnar-->
+    <?php
+      if(empty($_POST['tipoContenedor']) || empty($_POST['capacidad']) || empty($_POST['puntos']) || empty($_POST['estadoContenedor']) || empty($_POST['id_usuario'])) return;{
+
+        $tipoContenedor = rawurldecode($_POST['tipoContenedor']);
+        $capacidad = rawurldecode($_POST['capacidad']);
+        $puntos = rawurldecode($_POST['puntos']);
+        $estadoContenedor = rawurldecode($_POST['estadoContenedor']);
+        $id_usuario = rawurldecode($_POST['id_usuario']);
+
+        $json = file_get_contents("http://localhost:6969/contenedor/agregar/{$tipoContenedor}/{$puntos}/{$capacidad}/{$estadoContenedor}/{$id_usuario}");
+        echo $json;
+
+      } 
+    ?>
   </body>
 </html>
