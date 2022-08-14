@@ -72,7 +72,8 @@
                       <div class="gallery-wrap">
                         <div class="gallery-wrap-inner">
                           <h4>Materiales Aceptados</h4>
-                          <div class="dots-custom-lifestyle"></div><a class="back-to-gallery button-link button-link-icon" href="#"><span class="novi-icon icon icon-primary fa fa-angle-left"></span><span>Regresar al Menu</span><span>Agregar Contenedores</span></a>
+                          <div class="dots-custom-lifestyle"></div><a class="back-to-gallery button-link button-link-icon" href="#"><span class="novi-icon icon icon-primary fa fa-angle-left"></span><span>Regresar al Menu</span></a>
+                          <button class="button button-lg button-block button-primary" type="button"><a href='#tabs-1-2'>Solicitar</a></button>
                         </div>
                         <div class="gallery-wrap-inner">
                           <!-- Owl Carousel-->
@@ -111,6 +112,7 @@
                         <div class="gallery-wrap-inner">
                           <h4>Materiales Aceptados</h4>
                           <div class="dots-custom-portrait"></div><a class="back-to-gallery button-link button-link-icon" href="#"><span class="novi-icon icon icon-primary fa fa-angle-left"></span><span>Regresar Menu</span></a>
+                          <button class="button button-lg button-block button-primary" type="button"><a href='#tabs-1-2'>Solicitar</a></button>
                         </div>
                         <div class="gallery-wrap-inner">
                           <!-- Owl Carousel-->
@@ -149,6 +151,7 @@
                         <div class="gallery-wrap-inner">
                           <h4>Materiales Aceptados</h4>
                           <div class="dots-custom-fashion"></div><a class="back-to-gallery button-link button-link-icon" href="#"><span class="novi-icon icon icon-primary fa fa-angle-left"></span><span>Regresar Menu</span></a>
+                          <button class="button button-lg button-block button-primary" type="button"><a href='#tabs-1-2'>Solicitar</a></button>
                         </div>
                         <div class="gallery-wrap-inner">
                           <!-- Owl Carousel-->
@@ -187,6 +190,7 @@
                         <div class="gallery-wrap-inner">
                           <h4>Materiales Aceptados</h4>
                           <div class="dots-custom-nature"></div><a class="back-to-gallery button-link button-link-icon" href="#"><span class="novi-icon icon icon-primary fa fa-angle-left"></span><span>Regresar Menu</span></a>
+                          <button class="button button-lg button-block button-primary" type="button"><a href='#tabs-1-2'>Solicitar</a></button>
                         </div>
                         <div class="gallery-wrap-inner">
                           <!-- Owl Carousel-->
@@ -223,8 +227,9 @@
                     <div class="tab-pane fade" id="tabs-gallery-5">
                       <div class="gallery-wrap">
                         <div class="gallery-wrap-inner">
-                          <h4>RECUERDA QUE PARA ESTO DEBES DE MANDAR MENSAJE</h4>
+                          <h4>ESTE TIPO DE BASURA SE ADMINISTRA POR CONTACTO</h4>
                           <div class="dots-custom-city"></div><a class="back-to-gallery button-link button-link-icon" href="#"><span class="novi-icon icon icon-primary fa fa-angle-left"></span><span>Regresar Menu</span></a>
+                          <button class="button button-lg button-block button-primary" type="button"><a href='#tabs-1-4'>Enviar Mensaje</a></button>
                         </div>
                         <div class="gallery-wrap-inner">
                           <!-- Owl Carousel-->
@@ -257,46 +262,57 @@
                   </div>
                 </div>
               </div>
+              <!-- AGREGAR CONTENEDORES -->
               <div class="tab-pane fade" id="tabs-1-2">
                 <div class="content-box hide-on-modal">
-                  <div class="content-box-inner">
-                    <div class="row align-items-center row-30 row-md-30">
-                      <div class="col-12 col-md-6 col-lg-7">
-                        <figure><img src="images/about-01-504x369.jpg" alt="" width="504" height="369"/>
-                        </figure>
-                      </div>
-                      <div class="col-12 col-md-6 col-lg-5">
-                        <h3>Who I Am</h3>
-                        <p class="subtitle">bermodi tempora incidunt ut labore et dolore magna maliquam</p>
-                        <p>Dastqui dolorem ipsumquia dolsitmet conse tequam eius. Asmodi tempora incidunt ut labore et dolore magnam. Naliquam quaerat voleneni ullam corporis suscipit labasic ut aliquidea commodi consequatur.</p><a class="button button-primary button-icon button-icon-left" href="#" data-toggle="modal" data-target="#modal-about-us"><span>More</span><span class="novi-icon icon fa-angle-right"></span></a>
-                      </div>
+                  <div class="row row-30 justify-content-center align-items-center">
+                    <div class="col-12 col-md-7">
+                      <form class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="contenedores" method="post" action="#">
+                        <div class="row row-14 gutters-14">
+                          <div class="col-sm-6">
+                            <div class="form-wrap">
+                              <label for="tipoBasura">Tipo de Basura</label>
+                              <select class="form-input" id="tipoBasura" type="text" name="name" data-constraints="@Required">
+                                <option value="pc" id="papelcarton">Papel o Carton</option>
+                                <option value="vi" id="vidrio">Vidrio</option>
+                                <option value="pe" id="pet">Pet</option>
+                                <option value="am" id="metal">Aluminio o metal</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-wrap">
+                              <label for="capacidad">Capacidad en Kilogramos</label>
+                              <input class="form-input" id="capacidad" type="number" min="10" step="5" max="100" name="number" data-constraints="@Required">
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-wrap">
+                              <label for="estado">Estado</label>
+                              <select class="form-input" id="estado" type="text" name="state" data-constraints="@Required">
+                                <option value="off" id="papelcarton">Contendor Nuevo (Vacio)</option>
+                                <option value="on" id="vidrio">Contenedor Lleno</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-sm-12">
+                            <div class="form-button">
+                              <button class="button button-lg button-block button-primary" type="submit">Solicitar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
                     </div>
                   </div><a class="close-content-box" href="#">x</a>
                 </div>
-                <div class="modal slideUp" id="modal-about-us" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="content-box">
-                        <div class="content-box-inner">
-                          <div class="row">
-                            <div class="col-12">
-                              <h3>A Few Words About Me</h3>
-                              <p>Dastqui dolorem ipsumquia dolsitmet conse tequam eius. Asmodi tempora incid. Dent ut labore t dolore magnam. Naliquam quae. Rat voleneni ullam corporis suscipit labasic ut aliquidea commodi consequatur. Aquis autem vel eum iure reprehenderit, muytasas dresasaser. Esse, quam nihil molestiae consequatur, vel illum. Dastqui dolorem ipsumquia dolsitmet conse tequam eius. Asmodi tempora incid. Dent ut labore t dolore magnam. Naliquam quae.</p>
-                              <p>Rat voleneni ullam corporis suscipit labasic ut aliquidea commodi consequatur. Aquis autem vel eum iure reprehenderit. Asas dresasaser. Esse, quam nihil molestiae consequatur, vel illum. Dastqui dolorem ipsumquia dolsitmet conse tequam eius. Asmodi tempora incid. Dent ut labore t dolore magnam. Naliquam quae. Rat voleneni ullam corporis suscipit labasic ut aliquidea commodi consequatur. Aquis autem vel eum iure reprehenderit, muytasas dresasaser. Esse, quam nihil molestiae consequatur, vel illum. Dastqui dolorem ipsumquia dolsitmet conse tequam eius. Asmodi tempo. Asas dresasaser. Esse, quam nihil molestiae consequatur, vel illum. Dastqui dolorem ipsumquia dolsitmet conse tequam eius. Asmodi tempora incid. Dent ut labore t dolore magnam. Naliquam quae. Rat voleneni ullam corporis suscipit labasic ut aliquidea</p>
-                            </div>
-                          </div>
-                        </div><a class="close-modal-content-box" href="#" data-dismiss="modal">x</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
+              <!-- CONTACTO CON LOS PROPIATARIOS-->
               <div class="tab-pane fade" id="tabs-1-4">
                 <div class="content-box hide-on-modal">
                   <div class="row row-30 justify-content-center align-items-center">
                     <div class="col-12 col-md-7">
                       <!--RD Mailform-->
-                      <form class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                      <form class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="contact" method="post">
                         <div class="row row-14 gutters-14">
                           <div class="col-sm-6">
                             <div class="form-wrap">
@@ -324,7 +340,7 @@
                           </div>
                           <div class="col-sm-6 align-self-end">
                             <div class="form-button">
-                              <button class="button button-lg button-block button-primary" type="submit">Enviar</button>
+                              <button class="button button-lg button-block button-primary" type="submit" href="mailto:itsjesito@gmail.com?Subject=Solicito%20Recoleccion%20de%20Basura%20de%20Tipo%20Desecho%20Patológico">Enviar</button>
                             </div>
                           </div>
                         </div>

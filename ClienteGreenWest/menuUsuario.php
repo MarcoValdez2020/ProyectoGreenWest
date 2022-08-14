@@ -23,11 +23,11 @@
                     </div>
                 <div class="menu-items">
                     <ul class="nav-links">
-                        <li><a href="dashboard.html">
+                        <li><a href="#">
                                 <i class="uil uil-shopping-cart-alt"></i>
                                 <span class="link-name"><b>Centro de canje</b></span>
                             </a></li>
-                        <li><a href="Panel_Usuarios.html">
+                        <li><a href="#">
                                 <i class="uil uil-user-square"></i>
                                 <span class="link-name"><b>Datos Personales</b></span>
                             </a></li>
@@ -35,11 +35,11 @@
                                 <i class="uil uil-trash-alt"></i>
                                 <span class="link-name"><b>Contenedores </b></span>
                             </a></li>
-                        <li><a href="Panel_Materiales.html">
+                        <li><a href="#">
                                 <i class="uil uil-location-pin-alt"></i>
                                 <span class="link-name"><b>Dirección</b></span>
                             </a></li>
-                        <li><a href="#">
+                        <li><a href="index.php">
                                 <i class="uil uil-signout"></i>
                                 <span class="link-name"><b>Cerrar Sesión</b></span>
                             </a></li>
