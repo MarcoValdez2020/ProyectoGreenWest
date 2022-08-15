@@ -49,8 +49,10 @@
           <div class="tabs-custom tabs-horizontal tabs-corporate" id="tabs-1">
             <!-- Nav tabs-->
             <ul class="nav nav-tabs">
-              <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span class="nav-link-main">Inicio</span></a></li>
-              <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span class="nav-link-main">Contenedores</span></a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span class="nav-link-main">Contenedores</span></a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span class="nav-link-main">Agregar</span></a></li>
+              <!-- la linea de abajo va a redireccionar a la pagina de  -->
+              <li class="nav-item" role="presentation"><a class="nav-link" href="#" data-toggle="tab"><span class="nav-link-main">Mis Contenedores</span></a></li> 
               <li class="nav-item" role="presentation"><a class="nav-link" href="menuUsuario.php" data-toggle="tab"><span class="nav-link-main">Regalos</span></a></li>
               <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-4" data-toggle="tab"><span class="nav-link-main">Contacto</span></a></li>
             </ul>
@@ -66,7 +68,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-gallery-4" data-toggle="tab"><img src="images/metal.png" alt="" width="80" height="80"/><span>Aluminio o Metal</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-gallery-5" data-toggle="tab"><img src="images/patologicos.jpg" alt="" width="80" height="80"/><span>Desechos Patológicos</span></a></li>
                   </ul>
-                  <!-- Tab panes-->
+                  <!-- Papel -->
                   <div class="tab-content">
                     <div class="tab-pane fade" id="tabs-gallery-1">
                       <div class="gallery-wrap">
@@ -106,7 +108,7 @@
                         </div>
                       </div>
                     </div>
-                    <!--Portrait-->
+                    <!--Vidrio-->
                     <div class="tab-pane fade" id="tabs-gallery-2">
                       <div class="gallery-wrap">
                         <div class="gallery-wrap-inner">
@@ -145,7 +147,7 @@
                         </div>
                       </div>
                     </div>
-                    <!--Fashion-->
+                    <!--Pet-->
                     <div class="tab-pane fade" id="tabs-gallery-3">
                       <div class="gallery-wrap">
                         <div class="gallery-wrap-inner">
@@ -184,7 +186,7 @@
                         </div>
                       </div>
                     </div>
-                    <!--nature-->
+                    <!--Metal-->
                     <div class="tab-pane fade" id="tabs-gallery-4">
                       <div class="gallery-wrap">
                         <div class="gallery-wrap-inner">
@@ -223,7 +225,7 @@
                         </div>
                       </div>
                     </div>
-                    <!--city-->
+                    <!--MEDICINA-->
                     <div class="tab-pane fade" id="tabs-gallery-5">
                       <div class="gallery-wrap">
                         <div class="gallery-wrap-inner">
@@ -267,14 +269,14 @@
                 <div class="content-box hide-on-modal">
                   <div class="row row-30 justify-content-center align-items-center">
                     <div class="col-12 col-md-7">
-                      <form method="POST">
+                      <form data-form-output="form-output-global" data-form-type="contact" method="post">
                         <div class="row row-14 gutters-14">
                           <div class="col-sm-6">
                             <div class="form-wrap">
-                              <label for="tipoContenedor">Tipo de Basura</label>
-                              <select class="form-input" id="tipoContenedor" type="text" name="text" data-constraints="@Required">
+                            <label for="tipoContenedor">Tipo de Basura</label>
+                              <select class="form-input" id="tipoContenedor" type="text" name="tipoContenedor">
                                 <option> Seleccione el tipo de Basura </option>
-                                <option value="papel/carton" id="papelcarton">Papel o Carton</option>
+                                <option value="papel" id="papelcarton">Papel o Carton</option>
                                 <option value="vidrio" id="vidrio">Vidrio</option>
                                 <option value="pet" id="pet">Pet</option>
                                 <option value="metal" id="metal">Aluminio o metal</option>
@@ -284,34 +286,34 @@
                           <div class="col-sm-6">
                             <div class="form-wrap">
                               <label for="capacidad">Capacidad en Kilogramos</label>
-                              <input class="form-input" id="capacidad" type="number" min="10" step="5" max="100" name="number" data-constraints="@Required">
+                              <input class="form-input" id="capacidad" type="number" min="10" step="5" max="100" name="capacidad">
                             </div>
                           </div>
                           <div class="col-sm-6">
                             <div class="form-wrap">
                               <label for="puntos">Puntos</label>
-                              <input class="form-input" id="puntos" type="number" min="10" step="10" max="40" name="numbre" data-constraints="@Required">
+                              <input class="form-input" id="puntos" type="number" min="10" step="10" max="40" name="puntos">
                             </div>
                           </div>
                           <div class="col-sm-6">
                             <div class="form-wrap">
                               <label for="estadoContenedor">Estado</label>
-                              <select class="form-input" id="estadoContenedor" type="text" name="text" data-constraints="@Required">
+                              <select class="form-input" id="estadoContenedor" type="text" name="estadoContenedor">
                                 <option> Eliga como se encuentra su contenedor </option>
                                 <option value="0" id="off">Contendor Nuevo (Vacio)</option>
-                                <option value="1" id="on">Contenedor Lleno</option>
+                                <!-- <option value="1" id="on">Contenedor Lleno</option> -->
                               </select>
                             </div>
                           </div>
                           <div class="col-sm-6">
                             <div class="form-wrap">
                               <label for="id_usuario">identificador de usuario</label>
-                              <input class="form-input" id="id_usuario" type="number" step="1" name="number" data-constraints="@Required">
+                              <input class="form-input" id="id_usuario" type="number" min="1" max= "2" step="1" name="id_usuario">
                             </div>
                           </div>
                           <div class="col-sm-12">
                             <div class="form-button">
-                              <button class="button button-lg button-block button-primary" id="contenedor" type="submit">Solicitar</button>
+                              <input class="button button-lg button-block button-primary" id="contenedor" type="submit" value="Solicitar">
                             </div>
                           </div>
                         </div>
@@ -354,7 +356,7 @@
                           </div>
                           <div class="col-sm-6 align-self-end">
                             <div class="form-button">
-                              <button class="button button-lg button-block button-primary" type="submit" href="mailto:itsjesito@gmail.com?Subject=Solicito%20Recoleccion%20de%20Basura%20de%20Tipo%20Desecho%20Patológico">Enviar</button>
+                              <button class="button button-lg button-block button-primary" href="mailto:itsjesito@gmail.com?Subject=Solicito%20Recoleccion%20de%20Basura%20de%20Tipo%20Desecho%20Patológico">Enviar</button>
                             </div>
                           </div>
                         </div>
@@ -387,7 +389,7 @@
             <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>.&nbsp;</span><a href="#" data-toggle="modal" data-target="#privacy">Politicas de Privacidad</a></p>
           </div>
         </div>
-        <!-- Coded by JeremyLuis-->
+        <!-- POLITICAS -->
       </footer>
 
       <div class="modal modal-centered slideUp" id="privacy" tabindex="-1" role="dialog" aria-hidden="true">
@@ -408,25 +410,25 @@
         </div>
       </div>
     </div>
+    
     <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"></div>
     <!-- Javascript-->
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
-    <!-- coded by ragnar-->
+    <!-- Codigo PHP-->
     <?php
-      if(empty($_POST['tipoContenedor']) || empty($_POST['capacidad']) || empty($_POST['puntos']) || empty($_POST['estadoContenedor']) || empty($_POST['id_usuario'])) return;{
+    if(empty($_POST['tipoContenedor']) || empty($_POST['capacidad']) || empty($_POST['puntos']) || empty($_POST['estadoContenedor']) || empty($_POST['id_usuario']))
 
-        $tipoContenedor = rawurldecode($_POST['tipoContenedor']);
-        $capacidad = rawurldecode($_POST['capacidad']);
-        $puntos = rawurldecode($_POST['puntos']);
-        $estadoContenedor = rawurldecode($_POST['estadoContenedor']);
-        $id_usuario = rawurldecode($_POST['id_usuario']);
+    $tipoContenedor = rawurldecode($_POST['tipoContenedor']);
+    $capacidad = rawurldecode($_POST['capacidad']);
+    $puntos = rawurldecode($_POST['puntos']);
+    $estadoContenedor = rawurldecode($_POST['estadoContenedor']);
+    $id_usuario = rawurldecode($_POST['id_usuario']);
 
-        $json = file_get_contents("http://localhost:6969/contenedor/agregar/{$tipoContenedor}/{$puntos}/{$capacidad}/{$estadoContenedor}/{$id_usuario}");
-        echo $json;
+    $json = file_get_contents("http://localhost:6969/contenedor/agregar/{$tipoContenedor}/{$puntos}/{$capacidad}/{$estadoContenedor}/{$id_usuario}");
 
-      } 
+    return
     ?>
   </body>
 </html>
