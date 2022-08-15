@@ -9,8 +9,8 @@ class centrocanje extends Model
 {
     use HasFactory;
 
-    protected $tabla = "centrocanje";
-
+    protected $table = "centrocanje";
+    protected $primaryKey = "id_canje";
     protected $fillable = [
         'fechaCanje',
         'id_usuario',

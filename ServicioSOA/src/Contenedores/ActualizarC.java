@@ -16,11 +16,13 @@ import spark.Spark;
 public class ActualizarC {
     
     public ActualizarC(final HikariPool HIKARI_POOL){
-        Spark.get("/contenedores/actualizar/:id_contenedor", (request, response) -> {
+        Spark.get("/contenedor/actualizar/:id_contenedor", (request, response) -> {
             int contenedor = Integer.parseInt(request.params("id_contenedor"));
             final String lQuery = new LUpdate()
-                    .table("contenedores")
-                    .update("puntos","")
+                    .table("contenedor")
+                    .update("capacidad", "")
+                    .update("estadoContenedor", "")
+                    .where("id_contenedor", "=", "_")
                     .getQuery();
             HIKARI_POOL.execute(connection -> {
                 connection.prepareStatement(lQuery).execute();
@@ -29,32 +31,19 @@ public class ActualizarC {
             return "Actualizado Contenedor";
         });
         
-        Spark.get("/catalogo/actualizar/:id_catalogo", (request, response) -> {
-            int catalogo = Integer.parseInt(request.params("id_catalogo"));
+        Spark.get("/tipoContenedor/actualizar/:id_tipoConte", (request, response) -> {
+            int catalogo = Integer.parseInt(request.params("id_tipoConte"));
             final String lQuery = new LUpdate()
-                    .table("catalogo")
+                    .table("tipocontenedor")
                     .update("tipoContenedor", "")
-                    .update("capacidad", "")
+                    .update("puntos", "")
+                    .where("id_tipoConte", "=", "_")
                     .getQuery();
             HIKARI_POOL.execute(connection -> {
                 connection.prepareStatement(lQuery).execute();
                 return null;
             });
             return "Actualizado Catalogo";
-        });
-        
-        Spark.get("/historial/actualizar/:id_historial", (request, response) -> {
-            int historial = Integer.parseInt(request.params("id_historial"));
-            final String lQuery = new LUpdate()
-                    .table("historial")
-                    .update("fecha_acceso", "")
-                    .update("documento", "")
-                    .getQuery();
-            HIKARI_POOL.execute(connection -> {
-                connection.prepareStatement(lQuery).execute();
-                return null;
-            });
-            return "Actualizado Historial";
         });
     }
 }

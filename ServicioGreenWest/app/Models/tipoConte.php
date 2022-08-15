@@ -9,8 +9,8 @@ class tipoConte extends Model
 {
     use HasFactory;
 
-    protected $tabla = "tipocontenedor";
-
+    protected $table = "tipocontenedor";
+    protected $primaryKey = "id_tipoConte";
     protected $fillable = [
         'tipoContenedor',
         'puntos'

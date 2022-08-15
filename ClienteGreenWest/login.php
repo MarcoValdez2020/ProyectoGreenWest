@@ -13,12 +13,11 @@
     <h1>Ingresa</h1>
     <span><a href="registro.php">Registrate</a></span>
     <span>ó regresa a la<a href="index.php"> Pagina principal</a></span>
-
-    <form action="login.php" method="POST">
-      <input name="usuario" type="text" placeholder="Ingresa tu usuario" required="required">
-      <input name="password" type="password" placeholder="Ingresa tu contraseña" minlength="8" maxlength="8" required="required">
-      <input type="submit" value="Submit">
-    </form>
+      <form action="login.php" method="POST">
+        <input name="usuario" type="text" placeholder="Ingresa tu usuario" required="required">
+        <input name="password" type="password" placeholder="Ingresa tu contraseña" minlength="8" maxlength="8" required="required">
+        <input type="submit" value="Submit">
+      </form>
 
     <?php
     
@@ -29,10 +28,15 @@
         
         if($json == "true"){ 
 
+        $menuUsuario='menuUsuario.php';
+        header('Location: '.$menuUsuario);
+
         echo "Iniciaste sesión";
-         
-        } else{
+
+        }else{
+
           echo "Usuario o contraseña incorrecto";
+
         }
     ?>
   </body>

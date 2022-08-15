@@ -11,85 +11,63 @@ import spark.Spark;
 
 /**
  *
- * @author itsje
+ * @author Jezer
  */
 public class AgregarC {
     
     public AgregarC(final HikariPool HIKARI_POOL) {
         
-        Spark.get("/contenedores/agregar/:puntos/:"
-                + "tipoContenedor/:capacidad/:"
-                + "fecha_acceso/:documento/:"
-                + "estado", (request, response) -> {
-            int puntos = Integer.parseInt(request.params(":puntos"));
+        Spark.get("/contenedor/agregar/:tipoContenedor/:"
+                + "puntos/:capacidad/:"
+                + "estadoContenedor/:id_usuario", (request, response) -> {
+                    System.out.println(response.toString());
+                    System.out.println(response.toString());
+                    try{
+            String tipoContenedor = request.params(":tipoContenedor");
+            int puntos = Integer.parseInt(request.params(":puntos"));            
+              
             final String lQuery = new LInsert()
-                    .table("contenedores")
+                    .table("tipocontenedor")
                     .values(
-                            null, puntos
+                            null, tipoContenedor, puntos
                     )
                     .getQuery();
             HIKARI_POOL.execute((cnctn) -> {
                 cnctn.prepareStatement(lQuery).execute();
-                return null; //To change body of generated lambdas, choose Tools | Templates.
+                return null;
             });
-            final String select = new LSelect().from("cuenta").value("*").getQuery();
+            final String select = new LSelect()
+                    .from("tipocontenedor")
+                    .value("*")
+                    .where("tipoContenedor", "=", tipoContenedor)
+                    .getQuery();
             int id = HIKARI_POOL.execute(connection -> {
                 final ResultSet resultSet = connection.prepareStatement(select).executeQuery();
                 if (resultSet.next()) {
-                    return resultSet.getInt("id");
+                    return resultSet.getInt("id_tipoConte");
                 }
                 return null;
             });
-            String tipoContenedor = request.params(":tipoContenedor");
-            double capacidad = Integer.parseInt(request.params(":capacidad"));
+            int capacidad = Integer.parseInt(request.params(":capacidad"));
+            boolean estadoContenedor = Boolean.parseBoolean(request.params(":estadoContenedor"));
+            int id_usuario = Integer.parseInt(request.params(":id_usuario"));
             final String lQuery1 = new LInsert()
-                    .table("catalogo")
+                    .table("contenedor")
                     .values(
-                            null, tipoContenedor, capacidad
+                            null, capacidad, estadoContenedor, id_usuario, id
                     )
                     .getQuery();
             HIKARI_POOL.execute((cnctn) -> {
-                cnctn.prepareStatement(lQuery).execute();
-                return null; //To change body of generated lambdas, choose Tools | Templates.
-            });
-            final String select1 = new LSelect().from("usuario").value("*").getQuery();
-            int id1 = HIKARI_POOL.execute(connection -> {
-                final ResultSet resultSet = connection.prepareStatement(select1).executeQuery();
-                if (resultSet.next()) {
-                    return resultSet.getInt("id");
-                }
-                return null;
-            });
-            String fecha_acceso = request.params(":fecha_acceso");
-            String documento = request.params(":documento");
-            final String lQuery2 = new LInsert()
-                    .table("direccion")
-                    .values(
-                        null, fecha_acceso, documento
-                    ).getQuery();
-            HIKARI_POOL.execute((cnctn) -> {
-                cnctn.prepareStatement(lQuery).execute();
-                return null; //To change body of generated lambdas, choose Tools | Templates.
-            });
-            final String select2 = new LSelect().from("historial").value("*").getQuery();
-            int id2 = HIKARI_POOL.execute(connection -> {
-                final ResultSet resultSet = connection.prepareStatement(select1).executeQuery();
-                if (resultSet.next()) {
-                    return resultSet.getInt("id");
-                }
-                return null;
-            });
-            boolean estado = Boolean.parseBoolean(request.params(":estado"));
-            final String lQuery3 = new LInsert()
-                    .table("asignacion")
-                    .values(
-                        null, null, null, null, true
-                    ).getQuery();
-            HIKARI_POOL.execute((cnctn) -> {
-                cnctn.prepareStatement(lQuery).execute();
+                cnctn.prepareStatement(lQuery1).execute();
                 return null;
             });
             return "Datos agregados";
+            
+            }
+                    catch (final Exception ex){
+                        ex.printStackTrace();
+                    }
+                    return "";
         });
     }
 }

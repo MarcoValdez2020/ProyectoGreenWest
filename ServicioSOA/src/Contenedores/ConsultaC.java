@@ -5,67 +5,62 @@
  */
 package Contenedores;
 
+import com.google.gson.Gson;
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.sql.ResultSet;
 import net.royalmind.library.lightquery.HikariPool;
 import net.royalmind.library.lightquery.queries.LSelect;
+import serviciosoa.Contenedor;
+import serviciosoa.tipoContenedor;
 import spark.Spark;
 
 /**
  *
- * @author itsje
+ * @author Jezer
  */
 public class ConsultaC {
     
     public ConsultaC(final HikariPool HIKARI_POOL){
-        Spark.get("/contenedores/obtener/:id_contenedor", (request, response) -> {
-            int contenedor = Integer.parseInt(request.params(":id_contenedor"));
-            final String lQuery = new LSelect().from("contenedores").value("*").getQuery();
-            HIKARI_POOL.execute(connection -> {
+        Spark.get("/contenedor/obtener/:id_contenedor", (request, response) -> {
+            String user = request.params(":id_contenedor");
+            final String lQuery = new LSelect().from("contenedor").value("*").getQuery();
+            return HIKARI_POOL.execute(connection -> {
                 final ResultSet resultSet = connection.prepareStatement(lQuery).executeQuery();
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     final int id_contenedor = resultSet.getInt("id_contenedor");
-                    final int puntos = resultSet.getInt("puntos");
-                    final int id_catalogo = resultSet.getInt("id_catalogo");
+                    final int capacidad = resultSet.getInt("capacidad");
+                    final boolean estadoContenedor = resultSet.getBoolean("estadoContenedor");
+                    final int id_usuario = resultSet.getInt("id_usuario");
+                    final int id_tipoConte = resultSet.getInt("id_tipoConte");
+                    
+                    return new Gson().toJson(
+                            new Contenedor(id_contenedor, capacidad, estadoContenedor, id_usuario, id_tipoConte),
+                            Contenedor.class
+                    );
                 }
                 LOGGER.info(String.format("(Select) lQuery executed! \n lQuery: %s", lQuery));
                 return null;
             });
-            return "Obtenido Contenedores";
         });
         
-        Spark.get("/catalogo/actualizar/:id_catalogo", (request, response) -> {
-            int catalogo = Integer.parseInt(request.params(":id_catalogo"));
-            final String lQuery = new LSelect().from("catalogo").value("*").getQuery();
-            HIKARI_POOL.execute(connection -> {
+        Spark.get("/tipoContenedor/obtener/:id_tipoConte", (request, response) -> {
+            String user = request.params(":id_tipoConte");
+            final String lQuery = new LSelect().from("tipoContenedor").value("*").getQuery();
+            return HIKARI_POOL.execute(connection -> {
                 final ResultSet resultSet = connection.prepareStatement(lQuery).executeQuery();
-                while (resultSet.next()) {
-                    final int id_catalogo = resultSet.getInt("id_catalogo");
+                if (resultSet.next()) {
+                    final int id_tipoConte = resultSet.getInt("id_tipoConte");
                     final String tipoContenedor = resultSet.getString("tipoContenedor");
-                    final double capacidad = resultSet.getDouble("capacidad");
+                    final int puntos = resultSet.getInt("puntos");
+                    
+                    return new Gson().toJson(
+                            new tipoContenedor(id_tipoConte, tipoContenedor, puntos),
+                            tipoContenedor.class
+                    );
                 }
                 LOGGER.info(String.format("(Select) lQuery executed! \n lQuery: %s", lQuery));
                 return null;
             });
-            return "Obteniendo Catalogo";
-        });
-        
-        Spark.get("/historial/actualizar/:id_historial", (request, response) -> {
-            int catalogo = Integer.parseInt(request.params(":id_historial"));
-            final String lQuery = new LSelect().from("historial").value("*").getQuery();
-            HIKARI_POOL.execute(connection -> {
-                final ResultSet resultSet = connection.prepareStatement(lQuery).executeQuery();
-                while (resultSet.next()) {
-                    final int id_historial = resultSet.getInt("id_historial");
-                    final String fecha_acceso = resultSet.getString("fecha_acceso");
-                    final long documento = resultSet.getLong("documento");
-                    final int id_contenedores = resultSet.getInt("id_contenedor");
-                }
-                LOGGER.info(String.format("(Select) lQuery executed! \n lQuery: %s", lQuery));
-                return null;
-            });
-            return "Obteniendo historial";
         });
     }
-    
 }
