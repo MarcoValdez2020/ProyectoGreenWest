@@ -57,9 +57,10 @@ public class ConsultarUsuario {
                     final String nombre = resultSet.getString("nombre");
                     final String apellidoP = resultSet.getString("apellidoP");
                     final String apellidoM = resultSet.getString("apellidoM");
+                    final String correo = resultSet.getString("correo");
                     final int id_cuenta = resultSet.getInt("id_cuenta");
                     return new Gson().toJson(
-                            new Usuario(id_usuario, nombre, apellidoP, apellidoM, id_cuenta),
+                            new Usuario(id_usuario, nombre, apellidoP, apellidoM, correo, id_cuenta),
                             Usuario.class
                     );
                 }

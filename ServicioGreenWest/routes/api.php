@@ -22,7 +22,7 @@ Route::post("descontarCantidad/{id_regalo}",[CentroCanjeController::class,'desco
 Route::post("descontarPuntos/{id_cuenta}/{puntosADescontar}",[CentroCanjeController::class,'descontarPuntos']);
 
 
-
+Route::get('consultarCanjes/{id_cuenta}',[CentroCanjeController::class, 'consultarCanjes']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

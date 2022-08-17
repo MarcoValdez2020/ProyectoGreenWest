@@ -12,14 +12,15 @@ package serviciosoa;
 public class Usuario {
 
   private final int id_usuario, id_cuenta;
-  private final String nombre, apellidoP, apellidoM;
+  private final String nombre, apellidoP, apellidoM, correo;
 
 
-  public Usuario(final int id_usuario, final String nombre, final String  apellidoP, final String  apellidoM, final int id_cuenta) {
+  public Usuario(final int id_usuario, final String nombre, final String  apellidoP, final String  apellidoM, final String correo, final int id_cuenta) {
       this.id_usuario = id_usuario;
       this.nombre = nombre;
       this.apellidoP = apellidoP;
       this.apellidoM = apellidoM;
+      this.correo = correo;
       this.id_cuenta = id_cuenta;
   }
 }

@@ -15,6 +15,12 @@ class CentroCanjeController extends Controller
         return $fecha;
     }
 
+    public function consultarCanjes($id_cuenta){
+       $canjes = centrocanje::where("id_usuario",$id_cuenta)->get();
+       return $canjes;
+
+    }
+
     public function consultarPuntos($id_cuenta){
         $cuenta = Cuenta ::find($id_cuenta);
         $puntos= $cuenta->puntos;
