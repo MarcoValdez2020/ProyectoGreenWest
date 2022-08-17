@@ -50,18 +50,21 @@ public class Actualizar {
             return "Actualizado";
         });
         
-        Spark.get("/direccion/actualizar/:id_usuario", (request, response) -> {
-            String usuario = request.params(":id_usuario");
+        Spark.get("/direccion/actualizar/:id_usuario/:estado/:municipio/:calle/:numero_exterior/:numero_interno", (request, response) -> {
+            String id_usuario = request.params(":id_usuario");
+            String estado = request.params(":estado");
+            String municipio = request.params(":municipio");
+            String calle = request.params(":calle");
+            int numero_exterior = Integer.parseInt(request.params(":numero_exterior"));
+            int numero_interno = Integer.parseInt(request.params(":numero_interno"));
             final String lQuery = new LUpdate()
                     .table("direccion")
-                    .update("estado", "")
-                    .update("municipio", "")
-                    .update("calle", "")
-                    .update("numero_exterior", "")
-                    .update("numero_interno", "")
-                    .update("coor_lantitud", "")
-                    .update("coor_longitud", "")
-                    .where("nombre", "=", "_")
+                    .update("estado", estado)
+                    .update("municipio", municipio)
+                    .update("calle", calle)
+                    .update("numero_exterior", numero_exterior)
+                    .update("numero_interno", numero_interno)
+                    .where("id_usuario", "=", id_usuario)
                     .getQuery();
             HIKARI_POOL.execute(connection -> {
                 connection.prepareStatement(lQuery).execute();
