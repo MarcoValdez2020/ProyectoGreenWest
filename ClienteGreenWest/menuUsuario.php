@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/menuUsuario.css">
 
 </head>
 
@@ -59,47 +61,42 @@
                         <span class="text">Centro de Canje </span>
                         <?php
                         session_start();
-                        //print "<p>Bienvenido:  $_SESSION[user_name]</p>";
+                        print "<p>Bienvenido:  $_SESSION[user_name]</p>";
                         $idUsuario = $_SESSION["id_cuenta"];
-                        //$jsonpuntos = file_get_contents("http://127.0.0.1:8000/api/consultarPuntos/{$idUsuario}");
-                        //$puntos = json_decode($jsonpuntos);
-                        //echo ("Puntos: " . $puntos);
+                        $jsonpuntos = file_get_contents("http://127.0.0.1:8000/api/consultarPuntos/{$idUsuario}");
+                        $puntos = json_decode($jsonpuntos);
+                        echo ("Puntos: " . $puntos);
                         ?>
                     </div>
                     <img src="../ClienteGreenWest/assets/images/LogoGreenWest.png" alt="">
                 </div>
                 <div class="dash-content">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <table class="table">
-                        <thead class="table-dark">
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="container">
+                        <form action="menuUsuario.php" method="POST" class="form-content">
+                            <div class="card" style="width: 18rem;">
+                                <img src="http://127.0.0.1:8000/upload/1660745366_libreta.jpg" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Libreta</h5>
+                                    <input type="submit" value="Canjear" class="btn btn-success" name="canjear">
+                                </div>
+                            </div>
+                        </form>
+                        <?php
+                        $canjear = "";
+                        if (isset($_POST['canjear'])) $canjear = $_POST['canjear'];
+
+                        if ($canjear) {
+                            $id_regalo = 1;
+                            $jsoncanje = file_get_contents("http://127.0.0.1:8000/api/Canjear/1/2");
+                            var_dump($http_response_header);
+
+                            echo '<script type="text/javascript">
+                            alert("Caje Realizado");
+                            </script>';
+                        }
+
+                        ?>
+                    </div>
                 </div>
                 </div>
             </section>
