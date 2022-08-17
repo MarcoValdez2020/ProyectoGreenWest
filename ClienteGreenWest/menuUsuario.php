@@ -7,15 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="css/dashboard.css">
 
 </head>
 
 <body>
-<v-app id="#view-dashboard">
+    <v-app id="#view-dashboard">
         <v-main>
             <nav>
                 <div class="logo-image">
@@ -60,18 +58,48 @@
                         <i class="uil uil-shopping-cart-alt"></i>
                         <span class="text">Centro de Canje </span>
                         <?php
-                            session_start();
-                            print "<p>Bienvenido:  $_SESSION[user_name]</p>";
-                            $idUsuario= $_SESSION["id_cuenta"];
-                            $jsonpuntos = file_get_contents("http://127.0.0.1:8000/api/consultarPuntos/{$idUsuario}");
-                            $puntos = json_decode($jsonpuntos);
-                            echo("Puntos: ".$puntos);                          
+                        session_start();
+                        //print "<p>Bienvenido:  $_SESSION[user_name]</p>";
+                        $idUsuario = $_SESSION["id_cuenta"];
+                        //$jsonpuntos = file_get_contents("http://127.0.0.1:8000/api/consultarPuntos/{$idUsuario}");
+                        //$puntos = json_decode($jsonpuntos);
+                        //echo ("Puntos: " . $puntos);
                         ?>
                     </div>
                     <img src="../ClienteGreenWest/assets/images/LogoGreenWest.png" alt="">
                 </div>
                 <div class="dash-content">
-                    <h1 id="title-dash">BIENVENIDO, QUE TENGA UN EXCELENTE DÍA</h1>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <table class="table">
+                        <thead class="table-dark">
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 </div>
             </section>
@@ -84,35 +112,35 @@
 
 <script>
     const body = document.querySelector("body"),
-      modeToggle = body.querySelector(".mode-toggle");
-      sidebar = body.querySelector("nav");
-      sidebarToggle = body.querySelector(".sidebar-toggle");
+        modeToggle = body.querySelector(".mode-toggle");
+    sidebar = body.querySelector("nav");
+    sidebarToggle = body.querySelector(".sidebar-toggle");
 
-let getMode = localStorage.getItem("mode");
-if(getMode && getMode ==="dark"){
-    body.classList.toggle("dark");
-}
-
-let getStatus = localStorage.getItem("status");
-if(getStatus && getStatus ==="close"){
-    sidebar.classList.toggle("close");
-}
-
-modeToggle.addEventListener("click", () =>{
-    body.classList.toggle("dark");
-    if(body.classList.contains("dark")){
-        localStorage.setItem("mode", "dark");
-    }else{
-        localStorage.setItem("mode", "light");
+    let getMode = localStorage.getItem("mode");
+    if (getMode && getMode === "dark") {
+        body.classList.toggle("dark");
     }
-});
 
-sidebarToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-    if(sidebar.classList.contains("close")){
-        localStorage.setItem("status", "close");
-    }else{
-        localStorage.setItem("status", "open");
+    let getStatus = localStorage.getItem("status");
+    if (getStatus && getStatus === "close") {
+        sidebar.classList.toggle("close");
     }
-})
+
+    modeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        if (body.classList.contains("dark")) {
+            localStorage.setItem("mode", "dark");
+        } else {
+            localStorage.setItem("mode", "light");
+        }
+    });
+
+    sidebarToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+        if (sidebar.classList.contains("close")) {
+            localStorage.setItem("status", "close");
+        } else {
+            localStorage.setItem("status", "open");
+        }
+    })
 </script>

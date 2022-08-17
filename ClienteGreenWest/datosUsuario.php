@@ -71,38 +71,41 @@
                 <img src="../ClienteGreenWest/assets/images/LogoGreenWest.png" alt="">
             </div>
             <div class="dash-content">
-                    <form action="datosUsuario.php" method="POST" class="form-content">
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nombre: </label>
-                            <input name="nombre" type="text" placeholder="Nombre" required="required" value="<?php echo $name?>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput2" class="form-label">Apellido Paterno:</label>
-                            <input name="apellidoP" type="text" placeholder="Apellido Paterno" required="required" value="<?php echo $apeP?>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput3" class="form-label">Apellido Materno:</label>
-                            <input name="apellidoM" type="text" placeholder="Apellido Materno" required="required" value="<?php echo $apeM?>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput4" class="form-label">Correo </label>
-                            <input name="correo" type="text" placeholder="Correo" required="required" value="<?php echo $mail?>">
-                        </div>
-                        <div class="mb-3">
+                <form action="datosUsuario.php" method="POST" class="form-content">
+                    <h1 class="tituloDatosPersonales">VERIFIQUE SUS DATOS PERSONALES</h1>
+                    <div class="mb-3">
+                        <img src="assets/images/datos_usuario_img.png" class="imagePersonal" alt="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre: </label>
+                        <input name="nombre" type="text" class="form-control" placeholder="Nombre" required="required" value="<?php echo $name?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Apellido Paterno:</label>
+                        <input name="apellidoP" type="text" class="form-control" placeholder="Apellido Paterno" required="required" value="<?php echo $apeP?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Apellido Materno:</label>
+                        <input name="apellidoM" type="text" class="form-control" placeholder="Apellido Materno" required="required"  value="<?php echo $apeM?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput4" class="form-label">Correo </label>
+                        <input name="correo" class="form-control" type="text" placeholder="Correo" required="required"  value="<?php echo $mail ?>">
+                    </div>
+                    <div class="d-flex flex-row mb-3">
+                        <div class="p-2">
                             <input type="submit" value="Actualizar" class="btn btn-success">
-                            <input type="submit" value="Eliminar" class="btn btn-red">
                         </div>
-                    </form>
+                    </div>
+                </form>
                 <?php
-                    if (empty($_POST['nombre']) || empty($_POST['apellidoP']) || empty($_POST['apellidoM']) || empty($_POST['correo'])) return;
-                    $nombre = rawurlencode($_POST['nombre']);
-                    $apellidoPat = rawurlencode($_POST['apellidoP']);
-                    $apellidoMat = rawurlencode($_POST['apellidoM']);
-                    $correo = rawurlencode($_POST['correo']);
-                    $json = file_get_contents("http://localhost:6969/usuario/actualizarusuario/{$nombre}/{$apellidoPat}/{$apellidoMat}/{$correo}/{$idUsuario}");
-                    //$datosUsuario='datosUsuario.php';
-                    //header('Location: '.$datosUsuario);
-                    echo'<script type="text/javascript">
+                if (empty($_POST['nombre']) || empty($_POST['apellidoP']) || empty($_POST['apellidoM']) || empty($_POST['correo'])) return;
+                $nombre = rawurlencode($_POST['nombre']);
+                $apellidoPat = rawurlencode($_POST['apellidoP']);
+                $apellidoMat = rawurlencode($_POST['apellidoM']);
+                $correo = rawurlencode($_POST['correo']);
+                $json = file_get_contents("http://localhost:6969/usuario/actualizarusuario/{$nombre}/{$apellidoPat}/{$apellidoMat}/{$correo}/{$idUsuario}");
+                echo '<script type="text/javascript">
                     alert("Usuario Actualizado");
                     window.location.href="datosUsuario.php";
                     </script>';
