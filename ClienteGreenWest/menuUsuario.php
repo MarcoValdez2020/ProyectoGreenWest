@@ -10,20 +10,19 @@
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-   
-
 </head>
 
 <body>
 <v-app id="#view-dashboard">
         <v-main>
             <nav>
-                    <div class="logo-image">
-                        <img src="../ClienteGreenWest/assets/images/LogoGreenWest.png" alt="">
-                    </div>
+                <div class="logo-image">
+                    <img src="../ClienteGreenWest/assets/images/LogoGreenWest.png" alt="">
+                </div>
                 <div class="menu-items">
                     <ul class="nav-links">
                         <li><a href="#">
+                        <li><a href="menuUsuario.php">
                                 <i class="uil uil-shopping-cart-alt"></i>
                                 <span class="link-name"><b>Centro de canje</b></span>
                             </a></li>
@@ -58,7 +57,15 @@
                     <i class="uil uil-bars sidebar-toggle"></i>
                     <div class="title">
                         <i class="uil uil-shopping-cart-alt"></i>
-                        <span class="text">Centro de Canje</span>
+                        <span class="text">Centro de Canje </span>
+                        <?php
+                            session_start();
+                            print "<p>Bienvenido:  $_SESSION[user_name]</p>";
+                            $idUsuario= $_SESSION["id_cuenta"];
+                            $jsonpuntos = file_get_contents("http://127.0.0.1:8000/api/consultarPuntos/{$idUsuario}");
+                            $puntos = json_decode($jsonpuntos);
+                            echo("Puntos: ".$puntos);                          
+                        ?>
                     </div>
                     <img src="../ClienteGreenWest/assets/images/LogoGreenWest.png" alt="">
                 </div>
@@ -69,21 +76,11 @@
             </section>
 
         </v-main>
-
-        <footer>
-            <div class="flex-container">
-                <div class="content1-login">
-                    <strong class="subheading footer-text">Green Waste C.V <i class="uil uil-estate"></i></strong>
-                </div>
-                <div class="content2-longin">
-                    <strong class="text-gps">Pachuca de Soto Hidalgo<i class="uil uil-home"></i></strong>
-                </div>
-            </div>
-        </footer>
     </v-app>
 </body>
 
 </html>
+
 <script>
     const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
