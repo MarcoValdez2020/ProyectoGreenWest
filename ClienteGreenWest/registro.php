@@ -1,9 +1,4 @@
-<?php
-/*
-  require 'database.php';
-  $message = ''; 
-  */
-?> 
+
 
 <!DOCTYPE html>
 <html>

@@ -15,6 +15,12 @@
             <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/inicioSesion/Cuenta.java</file>
             <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/inicioSesion/Actualizar.java</file>
             <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/serviciosoa/ServicioSOA.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/datosPersonales/ActualizarUsuario.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/serviciosoa/Usuario.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/datosPersonales/ConsultarUsuario.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/inicioSesion/Cuenta.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/inicioSesion/Consultar.java</file>
+            <file>file:/C:/xampp/htdocs/ProyectoGreenWest/ServicioSOA/src/inicioSesion/Actualizar.java</file>
         </group>
     </open-files>
 </project-private>
