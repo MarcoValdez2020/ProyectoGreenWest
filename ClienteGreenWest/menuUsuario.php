@@ -77,9 +77,9 @@
                         $lista = json_decode($regalos);
                         foreach ($lista as $list) {
                         ?>
-                            <div>
+                            <div class="card-group">
                                 <div class="card" style="width: 18rem;">
-                                    <img src="http://127.0.0.1:8000<?php echo $list->imagen ?>" class="card-img-top" alt="">
+                                    <img src="http://127.0.0.1:8000<?php echo $list->imagen ?>" class="card-img-top" id="img-card" alt="">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $list->nombre ?></h5>
                                         <p class="card-text">
