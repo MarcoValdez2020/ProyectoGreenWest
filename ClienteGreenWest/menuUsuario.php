@@ -88,17 +88,13 @@
                                         <br>
                                         <?php echo $list->id_regalo ?>
                                     </p>
-                                    </p>
                                     <form action="menuUsuario.php" method="POST" class="form-content">
                                         <input type="submit" value="Canjear" class="btn btn-success" name="canjear">
                                     </form>
-
                                 </div>
                             </div>
                         </div>
-
                     <?php } ?>
-
                     <?php
                     $canjear = "";
                     if (isset($_POST['canjear'])) $canjear = $_POST['canjear'];
