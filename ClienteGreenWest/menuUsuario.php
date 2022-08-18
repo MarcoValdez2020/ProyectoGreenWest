@@ -72,27 +72,43 @@
                 </div>
                 <div class="dash-content">
                     <div class="container">
-                        <form action="menuUsuario.php" method="POST" class="form-content">
-                            <div class="card" style="width: 18rem;">
-                                <img src="http://127.0.0.1:8000/upload/1660745366_libreta.jpg" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title">Libreta</h5>
-                                    <input type="submit" value="Canjear" class="btn btn-success" name="canjear">
+                        <?php
+                        $regalos = file_get_contents("http://127.0.0.1:8000/api/verRegalos");
+                        $lista = json_decode($regalos);
+                        foreach ($lista as $list) {
+                        ?>
+                            <div>
+                                <div class="card" style="width: 18rem;">
+                                    <img src="http://127.0.0.1:8000<?php echo $list->imagen ?>" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $list->nombre ?></h5>
+                                        <p class="card-text">
+                                            Precio: <?php echo $list->costePuntos ?> puntos
+                                            <br>
+                                            Cantidad: <?php echo $list->cantidad ?> unidades 
+                                            <br>
+                                            <?php echo $list->id_regalo ?></p>
+                                        </p>
+                                        <form action="menuUsuario.php" method="POST" class="form-content">
+                                            <input type="submit" value="Canjear" class="btn btn-success" name="canjear">
+                                        </form>
+
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+
+                        <?php } ?>
+
                         <?php
                         $canjear = "";
                         if (isset($_POST['canjear'])) $canjear = $_POST['canjear'];
 
                         if ($canjear) {
-                            $id_regalo = 1;
-                            $jsoncanje = file_get_contents("http://127.0.0.1:8000/api/Canjear/1/2");
-                            var_dump($http_response_header);
-
-                            echo '<script type="text/javascript">
-                            alert("Caje Realizado");
-                            </script>';
+                            $jsoncanje = file_get_contents("http://127.0.0.1:8000/api/Canjear/{$idUsuario}/{$id_regalo}}");
+                            // var_dump($http_response_header);
+                            // echo '<script type="text/javascript">
+                            // alert("Caje Realizado");
+                            //</script>';
                         }
 
                         ?>

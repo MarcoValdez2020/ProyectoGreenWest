@@ -78,7 +78,6 @@ class CentroCanjeController extends Controller
             return response()->json([
                 "status"=>0,
                 "msg"=>"No tienes puntos suficientes para este regalo",
-                "fecha"=>$Canje,
             ]);
         }
     }
