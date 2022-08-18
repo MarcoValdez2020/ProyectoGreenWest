@@ -56,49 +56,59 @@
             <section class="dashboard">
                 <div class="top">
                     <i class="uil uil-bars sidebar-toggle"></i>
-                    <div class="title">
-                        <i class="uil uil-shopping-cart-alt"></i>
-                        <span class="text">Centro de Canje </span>
-                        <?php
-                        session_start();
-                        print "<p>Bienvenido:  $_SESSION[user_name]</p>";
-                        $idUsuario = $_SESSION["id_cuenta"];
-                        $jsonpuntos = file_get_contents("http://127.0.0.1:8000/api/consultarPuntos/{$idUsuario}");
-                        $puntos = json_decode($jsonpuntos);
-                        echo ("Puntos: " . $puntos);
-                        ?>
+                    <div class="d-flex flex-row" id="enca">
+                        <div class="p-2">
+                            <i class="uil uil-shopping-cart-alt"></i>
+                            <span class="text">Centro de Canje </span>
+                        </div>
+                        <div class="p-2">
+                            <?php
+                            session_start();
+                            print "<p>Bienvenido:  $_SESSION[user_name]</p>";
+                            ?>
+                        </div>
+                        <div class="p-2">
+                            <?php
+                            $idUsuario = $_SESSION["id_cuenta"];
+                            $jsonpuntos = file_get_contents("http://127.0.0.1:8000/api/consultarPuntos/{$idUsuario}");
+                            $puntos = json_decode($jsonpuntos);
+                            echo ("Puntos: " . $puntos);
+                            ?>
+                        </div>
                     </div>
-                    <img src="../ClienteGreenWest/assets/images/LogoGreenWest.png" alt="">
+                    
                 </div>
                 <div class="dash-content">
-                    <?php
-                    $regalos = file_get_contents("http://127.0.0.1:8000/api/verRegalos");
-                    $lista = json_decode($regalos);
-                    foreach ($lista as $list) {
-                    ?>
-                        <div class="card-group">
-                            <div class="card">
-                                <img src="http://127.0.0.1:8000<?php echo $list->imagen ?>" class="card-img-top" id="img-card" alt="">
+                    <div class="card-group" id="container-cards">
+                        <?php
+                        $regalos = file_get_contents("http://127.0.0.1:8000/api/verRegalos");
+                        $lista = json_decode($regalos);
+                        foreach ($lista as $list) {
+                        ?>
+
+                            <div class="card" id="container-card">
+                                <img src="http://127.0.0.1:8000<?php echo $list->imagen ?>" class="" id="img-card" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $list->nombre ?></h5>
                                     <p class="card-text">
                                         Precio: <?php echo $list->costePuntos ?> puntos
                                         <br>
                                         Cantidad: <?php echo $list->cantidad ?> unidades
-                                        <br>
-                                        <?php echo $list->id_regalo ?>
                                     </p>
                                     <form action="menuUsuario.php" method="POST" class="form-content">
-                                        <input type="submit" value="Canjear" class="btn btn-success" name="canjear">
+                                        <input type="submit" value="Canjear" class="btn btn-success" name="canjear" id="canjear">
+                                        <input name="id_regalo" type="text" class="form-control" style="display: none;" placeholder="id_regalo" required="required" value="<?php echo $list->id_regalo ?>">
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                    <?php } ?>
+
+                        <?php } ?>
+                    </div>
                     <?php
                     $canjear = "";
                     if (isset($_POST['canjear'])) $canjear = $_POST['canjear'];
-
+                    if (empty($_POST['id_regalo'])) return;
+                    $id_regalo = rawurlencode($_POST['id_regalo']);
                     if ($canjear) {
                         $jsoncanje = file_get_contents("http://127.0.0.1:8000/api/Canjear/{$idUsuario}/{$id_regalo}}");
                         // var_dump($http_response_header);
