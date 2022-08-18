@@ -22,8 +22,8 @@ public class ConsultaC {
     
     public ConsultaC(final HikariPool HIKARI_POOL){
         Spark.get("/contenedor/obtener/:id_contenedor", (request, response) -> {
-            String user = request.params(":id_contenedor");
-            final String lQuery = new LSelect().from("contenedor").value("*").getQuery();
+            String id = request.params(":id_contenedor");
+            final String lQuery = new LSelect().from("contenedor").value("*").where("id_contenedor","=",id).getQuery();
             return HIKARI_POOL.execute(connection -> {
                 final ResultSet resultSet = connection.prepareStatement(lQuery).executeQuery();
                 if (resultSet.next()) {
@@ -44,8 +44,8 @@ public class ConsultaC {
         });
         
         Spark.get("/tipoContenedor/obtener/:id_tipoConte", (request, response) -> {
-            String user = request.params(":id_tipoConte");
-            final String lQuery = new LSelect().from("tipoContenedor").value("*").getQuery();
+            String id2 = request.params(":id_tipoConte");
+            final String lQuery = new LSelect().from("tipoContenedor").value("*").where("id_tipoConte","=",id2).getQuery();
             return HIKARI_POOL.execute(connection -> {
                 final ResultSet resultSet = connection.prepareStatement(lQuery).executeQuery();
                 if (resultSet.next()) {
