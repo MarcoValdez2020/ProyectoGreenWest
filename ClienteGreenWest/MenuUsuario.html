@@ -59,59 +59,37 @@
                     <div class="title">
                         <i class="uil uil-shopping-cart-alt"></i>
                         <span class="text">Centro de Canje </span>
-                        <?php
-                        session_start();
-                        print "<p>Bienvenido:  $_SESSION[user_name]</p>";
-                        $idUsuario = $_SESSION["id_cuenta"];
-                        $jsonpuntos = file_get_contents("http://127.0.0.1:8000/api/consultarPuntos/{$idUsuario}");
-                        $puntos = json_decode($jsonpuntos);
-                        echo ("Puntos: " . $puntos);
-                        ?>
+                       
                     </div>
                     <img src="../ClienteGreenWest/assets/images/LogoGreenWest.png" alt="">
                 </div>
                 <div class="dash-content">
-                    <?php
-                    $regalos = file_get_contents("http://127.0.0.1:8000/api/verRegalos");
-                    $lista = json_decode($regalos);
-                    foreach ($lista as $list) {
-                    ?>
-                        <div class="card-group">
-                            <div class="card">
-                                <img src="http://127.0.0.1:8000<?php echo $list->imagen ?>" class="card-img-top" id="img-card" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $list->nombre ?></h5>
-                                    <p class="card-text">
-                                        Precio: <?php echo $list->costePuntos ?> puntos
-                                        <br>
-                                        Cantidad: <?php echo $list->cantidad ?> unidades
-                                        <br>
-                                        <?php echo $list->id_regalo ?>
-                                    </p>
-                                    </p>
-                                    <form action="menuUsuario.php" method="POST" class="form-content">
-                                        <input type="submit" value="Canjear" class="btn btn-success" name="canjear">
-                                    </form>
-
-                                </div>
-                            </div>
+                    <div class="card-group">
+                        <div class="card">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          </div>
                         </div>
-
-                    <?php } ?>
-
-                    <?php
-                    $canjear = "";
-                    if (isset($_POST['canjear'])) $canjear = $_POST['canjear'];
-
-                    if ($canjear) {
-                        $jsoncanje = file_get_contents("http://127.0.0.1:8000/api/Canjear/{$idUsuario}/{$id_regalo}}");
-                        // var_dump($http_response_header);
-                        // echo '<script type="text/javascript">
-                        // alert("Caje Realizado");
-                        //</script>';
-                    }
-
-                    ?>
+                        <div class="card">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          </div>
+                        </div>
+                      </div>
                 </div>
                 </div>
             </section>
