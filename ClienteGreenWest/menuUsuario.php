@@ -109,7 +109,8 @@
                     if (isset($_POST['canjear'])) $canjear = $_POST['canjear'];
                     if (empty($_POST['id_regalo'])) return;
                     $id_regalo = rawurlencode($_POST['id_regalo']);
-                    if ($canjear) {
+                    if ($canjear) { 
+                        //header('Content-Type: application/json; charset=utf-8');
                         $jsoncanje = file_get_contents("http://127.0.0.1:8000/api/Canjear/{$idUsuario}/{$id_regalo}}");
                         // var_dump($http_response_header);
                         // echo '<script type="text/javascript">

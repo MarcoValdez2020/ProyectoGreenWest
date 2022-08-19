@@ -15,9 +15,9 @@ class CentroCanjeController extends Controller
         return $fecha;
     }
 
-    public function consultarCanjes($id_cuenta){
-       $canjes = centrocanje::where("id_usuario",$id_cuenta)->get();
-       return $canjes;
+    public function consultarCanjes(){
+        $datos = centrocanje::all();
+        return response()->json($datos);
 
     }
 
@@ -40,7 +40,12 @@ class CentroCanjeController extends Controller
         return $cantidad;
         //$this->consultarPuntos();
     }
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function descontarCantidad($id_regalo){
         $regalo = Regalo ::find($id_regalo);
         $cantidad= $regalo->cantidad;
@@ -49,7 +54,12 @@ class CentroCanjeController extends Controller
         $regalo->save();
         return $regalo->cantidad;
     }
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function descontarPuntos($id_cuenta,$puntosADescontar){
         $cuenta = Cuenta ::find($id_cuenta);
         $puntos= $cuenta->puntos;
@@ -58,7 +68,12 @@ class CentroCanjeController extends Controller
         $cuenta->save();
         return $cuenta->puntos;
     }
-
+/**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function Canjear($id_cuenta, $id_regalo){
         $Canje = new centrocanje();
         if($this->consultarPuntos($id_cuenta)>$this->consultarPrecio($id_regalo)){

@@ -15,7 +15,12 @@ class RegaloController extends Controller
         $datos = Regalo::all();
         return response()->json($datos);
     }
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function agregarRegalo(Request $request){
         $request -> validate([
             'nombre'=> 'required',

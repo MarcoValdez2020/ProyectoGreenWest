@@ -11,33 +11,33 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/menuUsuario.css">
+    <link rel="stylesheet" href="css/datosUsuario.css">
 
 </head>
 
 <body>
-    <v-app id="#view-dashboard">
-        <v-main>
+        <main>
             <nav>
                 <div class="logo-image">
                     <img src="../ClienteGreenWest/assets/images/LogoGreenWest.png" alt="">
                 </div>
                 <div class="menu-items">
                     <ul class="nav-links">
-                        <li><a href="menuUsuario.php">
+                        <li><a href="menuAdmin.php">
                                 <i class="uil uil-shopping-cart-alt"></i>
                                 <span class="link-name"><b>Regalos</b></span>
                             </a></li>
-                        <li><a href="datosUsuario.php">
-                                <i class="uil uil-user-square"></i>
-                                <span class="link-name"><b>Datos Personales</b></span>
+                            <li><a href="verRegalos.php">
+                                <i class="uil uil-shopping-cart-alt"></i>
+                                <span class="link-name"><b>Ver Regalos</b></span>
                             </a></li>
-                        <li><a href="contenedores.php">
-                                <i class="uil uil-trash-alt"></i>
-                                <span class="link-name"><b>Contenedores </b></span>
+                        <li><a href="http://127.0.0.1:4301">
+                                <i class="uil uil-dashboard"></i>
+                                <span class="link-name"><b>Dashboard</b></span>
                             </a></li>
-                        <li><a href="actualizarDireccion.php">
-                                <i class="uil uil-location-pin-alt"></i>
-                                <span class="link-name"><b>Dirección</b></span>
+                        <li><a href="canjes.php">
+                                <i class="uil uil-store"></i>
+                                <span class="link-name"><b>Canjes</b></span>
                             </a></li>
                         <li><a href="index.php">
                                 <i class="uil uil-signout"></i>
@@ -69,58 +69,90 @@
                             ?>
                         </div>
                     </div>
-                    
                 </div>
                 <div class="dash-content">
-                    <div class="card-group" id="container-cards">
-                        <?php
-                        $regalos = file_get_contents("http://127.0.0.1:8000/api/verRegalos");
-                        $lista = json_decode($regalos);
-                        foreach ($lista as $list) {
-                        ?>
-
-                            <div class="card" id="container-card">
-                                <img src="http://127.0.0.1:8000<?php echo $list->imagen ?>" class="" id="img-card" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $list->nombre ?></h5>
-                                    <p class="card-text">
-                                        Precio: <?php echo $list->costePuntos ?> puntos
-                                        <br>
-                                        Cantidad: <?php echo $list->cantidad ?> unidades
-                                    </p>
-                                    <form action="menuUsuario.php" method="POST" class="form-content">
-                                        <input type="submit" value="Canjear" class="btn btn-success" name="canjear" id="canjear">
-                                        <input name="id_regalo" type="text" class="form-control" style="display: none;" placeholder="id_regalo" required="required" value="<?php echo $list->id_regalo ?>">
-                                    </form>
-                                </div>
-                            </div>
-
-                        <?php } ?>
+                <form action="menuAdmin.php" method="POST" class="form-content">
+                    <h1 class="tituloDatosPersonales">Regalos</h1>
+                    <div class="mb-3">
+                        <img src="assets/images/regalo.png" class="imagePersonal" alt="">
                     </div>
-                    <?php
-                    $canjear = "";
-                    if (isset($_POST['canjear'])) $canjear = $_POST['canjear'];
-                    if (empty($_POST['id_regalo'])) return;
-                    $id_regalo = rawurlencode($_POST['id_regalo']);
-                    if ($canjear) {
-                        $jsoncanje = file_get_contents("http://127.0.0.1:8000/api/Canjear/{$idUsuario}/{$id_regalo}}");
-                        // var_dump($http_response_header);
-                        // echo '<script type="text/javascript">
-                        // alert("Caje Realizado");
-                        //</script>';
-                    }
-
-                    ?>
-                </div>
-                </div>
-            </section>
-
-        </v-main>
-    </v-app>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre: </label>
+                        <input name="nombre" type="text" class="form-control"  required="required">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Imagen:</label>
+                        <input name="imagen" type="file" class="form-control"  required="required" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Precio:</label>
+                        <input name="costePuntos" type="text" class="form-control" required="required" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput4" class="form-label">Cantidad: </label>
+                        <input name="cantidad" class="form-control" type="text" required="required" >
+                    </div>
+                    <div class="d-flex flex-row mb-3">
+                        <div class="p-2">
+                            <input type="submit" value="Agregar" class="btn btn-success">
+                        </div>
+                    </div>
+                </form>
+                <?php
+                echo "Hola";
+                if (empty($_POST['nombre']) || empty($_POST['imagen']) || empty($_POST['costePuntos']) || empty($_POST['cantidad'])) return;
+                $nombre = rawurlencode($_POST['nombre']);
+                $imagen = rawurlencode($_POST['imagen']);
+                $costePuntos = rawurlencode($_POST['costePuntos']);
+                $cantidad = rawurlencode($_POST['cantidad']);
+                $array = array(
+                    "nombre" => $nombre,
+                    "imagen" => $imagen,
+                    "costePuntos" => $costePuntos,
+                    "cantidad" => $cantidad
+                );
+                $json = json_encode($array);
+                $bytes = file_put_contents("myfile.json", $json);
+                $js = json_decode($json);
+                //print_r($json);
+               // header('Content-Type: application/json');
+                $jsonagregar = file_get_contents("http://127.0.0.1:8000/api/agregarRegalo",$json);
+                //echo '<script type="text/javascript">
+                  //  alert("Usuario Actualizado");
+                //    window.location.href="datosUsuario.php";
+                //    </script>';
+                ?>
+            </div>
+            </div>
+        </section>
+        </main>
 </body>
 
 </html>
+<?php
+                           /* if (empty($_POST['nombre']) || empty($_POST['imagen']) || empty($_POST['costePuntos']) || empty($_POST['cantidad'])) return;
+                            $nombre = rawurlencode($_POST['nombre']);
+                            $imagen = rawurlencode($_POST['imagen']);
+                            $costePuntos = rawurlencode($_POST['costePuntos']);
+                            $cantidad = rawurlencode($_POST['cantidad']);
 
+                            $array = array(
+                                "nombre" => $nombre,
+                                "imagen" => $imagen,
+                                "costePuntos" => $costePuntos,
+                                "cantidad" => $cantidad
+                            );
+                            $json = json_encode($array);
+                            $bytes = file_put_contents("myfile.json", $json);
+                            $js = json_decode($json);
+                            echo "Hola";
+
+                            $jsonagregar = file_get_contents("http://127.0.0.1:8000/api/agregarRegalo");
+                          */ // echo '<script type="text/javascript">
+                    //alert("Regalo Agregado");
+                    //window.location.href="datosUsuario.php";
+                    //</script>';
+                            ?>
 <script>
     const body = document.querySelector("body"),
         modeToggle = body.querySelector(".mode-toggle");
